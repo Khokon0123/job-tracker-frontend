@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { UserProvider } from './context/UserContext';
 import Layout from './components/Layout';
 import Login from './pages/Login';
 import Calendar from './pages/Calendar';
@@ -20,16 +21,18 @@ function PublicRoute({ children }) {
 export default function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-          <Route path="/" element={<PrivateRoute><Calendar /></PrivateRoute>} />
-          <Route path="/pipeline" element={<PrivateRoute><Pipeline /></PrivateRoute>} />
-          <Route path="/alumni" element={<PrivateRoute><Alumni /></PrivateRoute>} />
-          <Route path="/analytics" element={<PrivateRoute><Analytics /></PrivateRoute>} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </BrowserRouter>
+      <UserProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+            <Route path="/" element={<PrivateRoute><Calendar /></PrivateRoute>} />
+            <Route path="/pipeline" element={<PrivateRoute><Pipeline /></PrivateRoute>} />
+            <Route path="/alumni" element={<PrivateRoute><Alumni /></PrivateRoute>} />
+            <Route path="/analytics" element={<PrivateRoute><Analytics /></PrivateRoute>} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </BrowserRouter>
+      </UserProvider>
     </AuthProvider>
   );
 }
