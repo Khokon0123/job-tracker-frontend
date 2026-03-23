@@ -40,9 +40,7 @@ export default function Layout({ children }) {
           <button onClick={handleLogout} style={{ padding: '5px 12px', fontSize: 12, border: '0.5px solid #ddd', borderRadius: 8, background: 'transparent', cursor: 'pointer', color: '#666' }}>Sign out</button>
         </div>
       </div>
-      <div style={{ padding: '24px', maxWidth: 1200, margin: '0 auto' }}>
-        {children}
-      </div>
+      <div style={{ padding: '24px', maxWidth: 1200, margin: '0 auto' }}>{children}</div>
     </div>
   );
 }
